@@ -3,10 +3,10 @@ body {
   }
   
   .container {
-	max-width: 960px;
+	max-width: 1200px;
   }
   
-  .pricing-header {
+  .portal-header {
 	max-width: 700px;
   }
   
