@@ -4,19 +4,19 @@ const card_template = '\
 	<div class="col py-3">\
 		<div class="card mb-4 rounded-3 shadow-sm h-100">\
 			<a href="CARD_LINK" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">\
-				<img src="CARD_IMAGE" class="card-img-top" alt="Illustration">\
+				<img src="CARD_IMAGE" class="card-img-top" alt="Illustration" />\
 				<!--<div class="card-header py-3">\
 					<h3 class="my-0 fw-normal">THEME</h3>\
-					</div>-->\
-					<div class="card-body px-3 pt-5 pb-3">\
-						<h4 class="card-title">CARD_TITLE</h4>\
-						<p>CARD_CONTENT</p>\
-						</div>\
-						<!--<div class="card-footer rounded-bottom">\
-							<a class="w-100 btn btn-md btn-outline-primary" href="CARD_LINK" role="button" \
-							target="_blank" rel="noopener noreferrer">Link</a>\
-							</div>-->\
-				</a>\
+				</div>-->\
+				<div class="card-body px-3 pt-5 pb-3">\
+					<h4 class="card-title">CARD_TITLE</h4>\
+					<p>CARD_CONTENT</p>\
+				</div>\
+				<!--<div class="card-footer rounded-bottom">\
+					<a class="w-100 btn btn-md btn-outline-primary" href="CARD_LINK" role="button" \
+					target="_blank" rel="noopener noreferrer">Link</a>\
+				</div>-->\
+			</a>\
 		</div>\
 	</div>';
 
@@ -77,18 +77,17 @@ function printCards(data, title) {
 
 	document.getElementById("content").innerHTML += `<h2>${title}</h2>`;
 
-
-	document.getElementById("content").innerHTML += `<div class="row row-cols-1 row-cols-md-4 mb-3 text-center">`;
+	document.getElementById("content").innerHTML += `<div id="content-row-${title}" class="row row-cols-1 row-cols-md-4 mb-3 text-center"></div>`;
 
 
 	for (var i = 0; i < data.length; i += 1) {
 
-		document.getElementById("content").innerHTML += `<!-- enter the for loop -->`;
+		document.getElementById(`content-row-${title}`).innerHTML += `<!-- enter the for loop -->`;
 		if (data[i]["id"]) {
 
-			document.getElementById("content").innerHTML += `<!-- enter if -->`;
+			document.getElementById(`content-row-${title}`).innerHTML += `<!-- enter if -->`;
 
-			document.getElementById("content").innerHTML +=
+			document.getElementById(`content-row-${title}`).innerHTML +=
 
 				card_template.replace("CARD_TITLE", data[i].fields["Document"])
 					.replace(/CARD_LINK/g, data[i].fields.URL)
@@ -96,11 +95,10 @@ function printCards(data, title) {
 					.replace("CARD_CONTENT", data[i].fields.Description)
 					.replace("CARD_IMAGE", data[i].fields.Image[0].thumbnails.large.url);
 
-			document.getElementById("content").innerHTML += `<!-- end if -->`;
+			document.getElementById(`content-row-${title}`).innerHTML += `<!-- end if -->`;
 		}
-		document.getElementById("content").innerHTML += `<!-- end for loop -->`;
+		document.getElementById(`content-row-${title}`).innerHTML += `<!-- end for loop -->`;
 
 	}
 	document.getElementById("content").innerHTML += `<!-- End of printCards -->`;
-	document.getElementById("content").innerHTML += `</div>`;
 }
