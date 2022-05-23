@@ -77,7 +77,6 @@ function printCards(data, title) {
 
 	document.getElementById("content").innerHTML += `<h2>${title}</h2>`;
 
-
 	document.getElementById("content").innerHTML += `<div id="content-row-${title}" class="row row-cols-1 row-cols-md-4 mb-3 text-center"></div>`;
 
 
