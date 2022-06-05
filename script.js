@@ -33,7 +33,7 @@ fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?maxRecords=30&view=Gri
 	.then(res => res.json())
 	.then((data) => {
 
-		const categories = [];
+		const unsortedCategories = [];
 		for (const key in data.records) {
 			if (Object.hasOwnProperty.call(data.records, key)) {
 				const element = data.records[key];
@@ -41,12 +41,14 @@ fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?maxRecords=30&view=Gri
 				const category = element.fields.Category;
 				//console.log(category);
 
-				if (!categories.find(x => x == category)) { categories.push(category) }
+				if (!unsortedCategories.find(x => x == category)) { unsortedCategories.push(category) }
 
 			}
 		}
 
-		console.log(categories);
+		console.log(unsortedCategories);
+
+		const categories = unsortedCategories.sort((a, b) => a.localeCompare(b));
 
 		for (const key in categories) {
 			if (Object.hasOwnProperty.call(categories, key)) {
